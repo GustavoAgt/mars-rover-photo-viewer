@@ -6,7 +6,7 @@ import { FONTS } from "../../utils/variables";
 
 const Container = styled.div`
   height: 100vh;
-  width: 20rem;
+  width: 25rem;
   border-right: 1px #d4d4d4 solid;
   /* border-bottom-right-radius: 1rem; */
   /* border-top-right-radius: 1rem; */
@@ -31,7 +31,7 @@ const LogoContainer = styled.div`
 const Image = styled.img``;
 
 const LogoText = styled.span`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: ${FONTS.main_serif_font};
 `;
 
@@ -49,8 +49,7 @@ const SideBar: FC<Props> = ({ img }) => {
 
       <ButtonContainer>
         <SecondaryButton value="Home" width="80%" />
-        <SecondaryButton value="Friends" width="80%" />
-        <SecondaryButton value="Notification" width="80%" />
+        <SecondaryButton value="Favorites" width="80%" />
         <SecondaryButton value="Discover" width="80%" />
       </ButtonContainer>
     </Container>
