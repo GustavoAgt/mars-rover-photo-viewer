@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
+import { useMemo } from "react";
 
 import Card from "../components/card/card";
 import SideBar from "../components/sidebar/sidebar";
+import Slider from "../components/slider/slider";
 import useFetchRoversData from "../hooks/useFetchRoversData";
 
 import logo from "../resources/images/mars-rover2.png";
+import { generateCardInfo } from "../utils/generator";
 import "./home.styles.scss";
 
 const CardContainer = styled.div`
@@ -15,13 +18,26 @@ const CardContainer = styled.div`
   column-gap: 1rem;
   row-gap: 1rem;
   max-width: 75%;
+  height: fit-content;
   margin: 0 auto;
   padding: 2.5rem;
 `;
 
+const SliderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin-top: 5rem;
+`;
+
 const Home = () => {
   const { data, isLoading } = useFetchRoversData();
-  const photos = data?.data?.photos;
+
+  const gPickedPics = useMemo(
+    () => generateCardInfo(data?.data?.photos),
+    [data?.data?.photos]
+  );
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -31,7 +47,7 @@ const Home = () => {
     <main className="home_container">
       <SideBar img={logo} />
       <CardContainer>
-        {photos?.map((obj) => {
+        {gPickedPics?.map((obj) => {
           const { launch_date, landing_date, name } = obj.rover;
           const { full_name, name: camName } = obj.camera;
           return (
@@ -47,6 +63,10 @@ const Home = () => {
             />
           );
         })}
+
+        <SliderContainer>
+          <Slider value="4"/>
+        </SliderContainer>
       </CardContainer>
     </main>
   );
