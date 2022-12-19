@@ -43,7 +43,10 @@ const SliderContainer = styled.div`
 const CardSlideContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+  width: 100%;
+  margin-bottom: 10rem;
 `;
 
 const Home = () => {
