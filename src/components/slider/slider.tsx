@@ -1,5 +1,7 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC } from "react";
 import styled from "@emotion/styled";
+import { useDispatch } from "react-redux";
+import { setSlideValue } from "../../redux/slices/slide.slice";
 import mars from "../../resources/images/mars.png";
 
 const StyledSlide = styled.input`
@@ -41,13 +43,14 @@ const StyledSlide = styled.input`
 type Props = {
   value: string;
 };
-const Slider: FC<Props> = ({}) => {
-  const [value, setValue] = useState<string>('');
+
+const Slider: FC<Props> = ({ value }) => {
+  const dispatch = useDispatch();
 
   const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    dispatch(setSlideValue({ value: event.target.value }));
   };
-  
+
   return (
     <StyledSlide
       type="range"

@@ -5,11 +5,9 @@ import { SecondaryButton } from "../button/button";
 import { FONTS } from "../../utils/variables";
 
 const Container = styled.div`
-  height: 100vh;
-  width: 25rem;
+  height: 110vh;
+  min-width: 25rem;
   border-right: 1px #d4d4d4 solid;
-  /* border-bottom-right-radius: 1rem; */
-  /* border-top-right-radius: 1rem; */
 `;
 
 const ButtonContainer = styled.div`
