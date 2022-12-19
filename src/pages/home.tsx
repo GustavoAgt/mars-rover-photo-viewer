@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useMemo } from "react";
 
 import Card from "../components/card/card";
+import Header from "../components/mobile/header/header";
 import SideBar from "../components/sidebar/sidebar";
 import Slider from "../components/slider/slider";
 import { useAppSelector } from "../hooks/app.hooks";
@@ -22,6 +23,10 @@ const CardContainer = styled.div`
   height: fit-content;
   margin: 0 auto;
   padding: 2.5rem;
+
+  @media only screen and (max-width: 768px) {
+    min-width: 100%;
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -29,6 +34,10 @@ const SliderContainer = styled.div`
   align-items: center;
   width: 75%;
   margin-top: 5rem;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 5rem;
+  }
 `;
 
 const CardSlideContainer = styled.div`
@@ -53,7 +62,10 @@ const Home = () => {
   return (
     <main className="home_container">
       <SideBar img={logo} />
+
       <CardSlideContainer>
+        {/* Header only for mobile devices */}
+        <Header />
         <CardContainer>
           {gPickedPics?.map((obj) => {
             const { launch_date, landing_date, name } = obj.rover;

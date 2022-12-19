@@ -8,6 +8,10 @@ const Container = styled.div`
   height: 110vh;
   min-width: 25rem;
   border-right: 1px #d4d4d4 solid;
+
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ButtonContainer = styled.div`
