@@ -8,6 +8,7 @@ import logo from "../resources/images/mars-rover2.png";
 import { Photo } from "../types/photo.types";
 
 import "./bookmarks.styles.scss";
+import BottomNav from "../components/bottom-nav/bottom-nav.component";
 
 const CardContainer = styled.div`
   display: flex;
@@ -34,6 +35,31 @@ const CardSlideContainer = styled.div`
   width: 100%;
   margin-bottom: 10rem;
 `;
+const BottomContainer = styled.div`
+  display: none;
+  z-index: 1;
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
+    display: inherit;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+  }
+`;
+
+const NoContent = styled.span`
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, 50%);
+  font-size: 3.5rem;
+  color: #000;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 3rem;
+    top: 35%;
+  }
+`;
 
 const Bookmarks = () => {
   const [value, setValue] =
@@ -59,40 +85,48 @@ const Bookmarks = () => {
       setValue([{ key: photo.id, value: photo }]);
     }
   };
-
   return (
     <div className="bookmarks">
       <SideBar img={logo} />
       {/* COMPONETIZE CARD CONTAINER */}
-      <CardSlideContainer>
-        {/* Header only for mobile devices */}
-        <Header />
-        <CardContainer>
-          {bookmarkedPics?.map((obj) => {
-            const { launch_date, landing_date, name } = obj.rover;
-            const { full_name, name: camName } = obj.camera;
 
-            /** TODO improve performance  */
-            const map = new Map(value?.map((obj) => [obj.key, obj.value]));
-            return (
-              <Card
-                key={obj.id}
-                img={obj.img_src}
-                launchDate={launch_date}
-                landingDate={landing_date}
-                earthDatePic={obj.earth_date}
-                name={name}
-                camFullName={full_name}
-                camaraName={camName}
-                bookmarked={!!map?.get(obj.id)}
-                onBookmark={() => {
-                  onBookmarkPhoto(obj, !!map?.get(obj.id));
-                }}
-              />
-            );
-          })}
-        </CardContainer>
-      </CardSlideContainer>
+      {bookmarkedPics.length < 1 ? (
+        <NoContent>No photos has been bookmarked</NoContent>
+      ) : (
+        <CardSlideContainer>
+          {/* Header only for mobile devices */}
+          <Header />
+          <CardContainer>
+            {bookmarkedPics?.map((obj) => {
+              const { launch_date, landing_date, name } = obj.rover;
+              const { full_name, name: camName } = obj.camera;
+
+              /** TODO improve performance  */
+              const map = new Map(value?.map((obj) => [obj.key, obj.value]));
+              return (
+                <Card
+                  key={obj.id}
+                  img={obj.img_src}
+                  launchDate={launch_date}
+                  landingDate={landing_date}
+                  earthDatePic={obj.earth_date}
+                  name={name}
+                  camFullName={full_name}
+                  camaraName={camName}
+                  bookmarked={!!map?.get(obj.id)}
+                  onBookmark={() => {
+                    onBookmarkPhoto(obj, !!map?.get(obj.id));
+                  }}
+                />
+              );
+            })}
+          </CardContainer>
+        </CardSlideContainer>
+      )}
+
+      <BottomContainer>
+        <BottomNav />
+      </BottomContainer>
     </div>
   );
 };

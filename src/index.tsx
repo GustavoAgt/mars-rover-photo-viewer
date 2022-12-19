@@ -2,17 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
+import { RouterProvider } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./redux/store/store";
 import App from "./App";
 import Bookmarks from "./pages/bookmarks";
 
-import { RouterProvider } from "react-router";
 
 import "./index.scss";
 
-import { createBrowserRouter } from "react-router-dom";
+import NotFound from "./pages/404";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/bookmarks",
     element: <Bookmarks />,
+  },
+
+  {
+    path: "/*",
+    element: <NotFound />,
   },
 ]);
 
