@@ -66,7 +66,7 @@ const Bookmarks = () => {
     useLocalStorage<{ key: number; value: Photo }[]>("photos");
 
   const extractPhotos = (data: { key: number; value: Photo }[]) => {
-    return data.map((d) => d.value);
+    return data?.map((d) => d.value);
   };
 
   const bookmarkedPics = useMemo(() => extractPhotos(value), [value]);
@@ -90,7 +90,7 @@ const Bookmarks = () => {
       <SideBar img={logo} />
       {/* COMPONETIZE CARD CONTAINER */}
 
-      {bookmarkedPics.length < 1 ? (
+      {bookmarkedPics && bookmarkedPics?.length < 1 ? (
         <NoContent>No photos has been bookmarked</NoContent>
       ) : (
         <CardSlideContainer>

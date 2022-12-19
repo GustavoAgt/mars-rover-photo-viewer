@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { FC } from "react";
 
 const Container = styled.div`
   width: 7rem;
@@ -11,15 +12,13 @@ const Img = styled.img`
   width: 100%;
   height: 100%;
 `;
-
-const Avatar = () => {
+type Props = {
+  img: string;
+};
+const Avatar: FC<Props> = ({ img }) => {
   return (
     <Container>
-      <Img
-        src={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1920px-NASA_Mars_Rover.jpg"
-        }
-      />
+      <Img src={img} />
     </Container>
   );
 };

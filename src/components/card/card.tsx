@@ -118,7 +118,7 @@ const Card: FC<Props> = ({
       </DatesContainer>
 
       <MoreInfo>
-        <Avatar />
+        <Avatar img="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/NASA_Mars_Rover.jpg/1920px-NASA_Mars_Rover.jpg" />
         <NameContainer>
           <Name>{name}</Name>
           <CamName>
