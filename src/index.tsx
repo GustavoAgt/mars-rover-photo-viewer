@@ -2,12 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
+import reportWebVitals from "./reportWebVitals";
+
 import { store } from "./redux/store/store";
 import App from "./App";
+import Bookmarks from "./pages/bookmarks";
+
+import { RouterProvider } from "react-router";
 
 import "./index.scss";
 
-import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter } from "react-router-dom";
 
 const queryClient = new QueryClient();
 
@@ -15,11 +20,22 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/bookmarks",
+    element: <Bookmarks />,
+  },
+]);
+
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <App />
+        <RouterProvider router={router} />
       </Provider>
     </QueryClientProvider>
   </React.StrictMode>

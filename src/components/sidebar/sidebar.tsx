@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { FC } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { SecondaryButton } from "../button/button";
 
 import Logo from "../logo/logo";
@@ -26,13 +28,30 @@ type Props = {
 };
 
 const SideBar: FC<Props> = ({ img }) => {
+  const navigation = useNavigate();
+  const location = useLocation();
+
   return (
     <Container>
       <Logo src={img} width="52" height="52" />
 
       <ButtonContainer>
-        <SecondaryButton value="Home" width="80%" />
-        <SecondaryButton value="Favorites" width="80%" />
+        <SecondaryButton
+          value="Home"
+          width="80%"
+          onClick={() => {
+            navigation("/");
+          }}
+          keepColor={"/" === location.pathname}
+        />
+        <SecondaryButton
+          value="Bookmarks"
+          width="80%"
+          onClick={() => {
+            navigation("/bookmarks");
+          }}
+          keepColor={"/bookmarks" === location.pathname}
+        />
         <SecondaryButton value="Discover" width="80%" />
       </ButtonContainer>
     </Container>

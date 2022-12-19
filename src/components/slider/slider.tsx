@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from "react";
+import { ChangeEvent, FC} from "react";
 import styled from "@emotion/styled";
 import { useDispatch } from "react-redux";
 import { setSlideValue } from "../../redux/slices/slide.slice";

@@ -1,20 +1,13 @@
-import styled from "@emotion/styled";
 import { useMemo } from "react";
+import styled from "@emotion/styled";
 import { useLocalStorage } from "react-haiku";
-import BottomNav from "../components/bottom-nav/bottom-nav.component";
-
 import Card from "../components/card/card";
 import Header from "../components/mobile/header/header";
 import SideBar from "../components/sidebar/sidebar";
-import Slider from "../components/slider/slider";
-import Spinner from "../components/spinner/spinner";
-import { useAppSelector } from "../hooks/app.hooks";
-import useFetchRoversData from "../hooks/useFetchRoversData";
-
 import logo from "../resources/images/mars-rover2.png";
 import { Photo } from "../types/photo.types";
-import { generateCardInfo } from "../utils/generator";
-import "./home.styles.scss";
+
+import "./bookmarks.styles.scss";
 
 const CardContainer = styled.div`
   display: flex;
@@ -33,17 +26,6 @@ const CardContainer = styled.div`
   }
 `;
 
-const SliderContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 75%;
-  margin-top: 5rem;
-
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 5rem;
-  }
-`;
-
 const CardSlideContainer = styled.div`
   display: flex;
   align-items: center;
@@ -53,33 +35,15 @@ const CardSlideContainer = styled.div`
   margin-bottom: 10rem;
 `;
 
-const BottomContainer = styled.div`
-  display: none;
-  z-index: 1;
-  @media screen and (max-width: 768px) {
-    margin: 0 auto;
-    display: inherit;
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-  }
-`;
-
-const Home = () => {
-  const { data, isLoading } = useFetchRoversData();
-
-  const slideState = useAppSelector((state) => state.slide);
+const Bookmarks = () => {
   const [value, setValue] =
     useLocalStorage<{ key: number; value: Photo }[]>("photos");
 
-  const gPickedPics = useMemo(
-    () => generateCardInfo(slideState.value, data?.data?.photos),
-    [data?.data?.photos, slideState.value]
-  );
+  const extractPhotos = (data: { key: number; value: Photo }[]) => {
+    return data.map((d) => d.value);
+  };
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  const bookmarkedPics = useMemo(() => extractPhotos(value), [value]);
 
   const onBookmarkPhoto = (photo: Photo, bookmarked: boolean) => {
     if (value?.length > 0) {
@@ -97,14 +61,14 @@ const Home = () => {
   };
 
   return (
-    <main className="home_container">
+    <div className="bookmarks">
       <SideBar img={logo} />
-
+      {/* COMPONETIZE CARD CONTAINER */}
       <CardSlideContainer>
         {/* Header only for mobile devices */}
         <Header />
         <CardContainer>
-          {gPickedPics?.map((obj) => {
+          {bookmarkedPics?.map((obj) => {
             const { launch_date, landing_date, name } = obj.rover;
             const { full_name, name: camName } = obj.camera;
 
@@ -128,15 +92,8 @@ const Home = () => {
             );
           })}
         </CardContainer>
-        <SliderContainer>
-          <Slider value={slideState.value} />
-        </SliderContainer>
-
-        <BottomContainer>
-          <BottomNav />
-        </BottomContainer>
       </CardSlideContainer>
-    </main>
+    </div>
   );
 };
-export default Home;
+export default Bookmarks;

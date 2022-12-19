@@ -1,5 +1,10 @@
-import styled from "@emotion/styled";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { FC } from "react";
+import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+
 import Avatar from "../avatar/avatar";
 
 const Container = styled.div`
@@ -77,6 +82,8 @@ type Props = {
   name: string;
   camFullName: string;
   camaraName: string;
+  bookmarked: boolean;
+  onBookmark: () => void;
 };
 
 const Card: FC<Props> = ({
@@ -87,10 +94,15 @@ const Card: FC<Props> = ({
   name,
   camFullName,
   camaraName,
+  bookmarked,
+  onBookmark,
 }) => {
   return (
     <Container>
-      <Image src={img} />
+      <Image
+        src={img}
+        alt={`${name} photo of mars from cam ${camFullName} also known as ${camaraName}`}
+      />
 
       <DatesContainer>
         <Dates>
@@ -116,6 +128,21 @@ const Card: FC<Props> = ({
             </b>
           </CamName>
         </NameContainer>
+
+        <div>
+          <FontAwesomeIcon
+            onClick={onBookmark}
+            icon={faBookmark}
+            fontSize="2.2rem"
+            css={css`
+              color: ${bookmarked ? "#000" : "#d4d4d4"};
+              cursor: pointer;
+              & :hover {
+                transform: scale(1.1);
+              }
+            `}
+          />
+        </div>
       </MoreInfo>
     </Container>
   );

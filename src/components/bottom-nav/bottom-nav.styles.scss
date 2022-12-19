@@ -1,0 +1,11 @@
+.bottom-nav {
+  &__avatar {
+    position: absolute;
+    display: flex;
+    align-self: center;
+  }
+}
+
+.bottom-nav .Mui-selected{ 
+    color: #e84d1f;
+}

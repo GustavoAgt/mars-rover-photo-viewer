@@ -6,6 +6,7 @@ type Props = {
   className?: string;
   type?: "button" | "submit" | undefined;
   disabled?: boolean;
+  keepColor?: boolean;
   fontSize?: string;
   marginTop?: string;
   marginBottom?: string;
@@ -76,6 +77,7 @@ const SecondaryButton = styled(Button)<Props>`
   border: none;
   width: ${(props) => props.width || "100%"};
   background-color: white;
+  background: ${(props) => props.keepColor && "linear-gradient(45deg, rgb(255, 254, 253), rgb(255, 248, 237))"};
 
   &:hover {
     cursor: ${(props) => !props.disabled && "pointer"};
