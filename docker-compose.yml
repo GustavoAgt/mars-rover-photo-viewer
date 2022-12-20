@@ -6,8 +6,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    volumes:
-      - ./:/app
-      - ignore:/app/node_modules/
-volumes:
-  ignore:
+#     volumes:
+#       - ./:/app
+#       - ignore:/app/node_modules/
+# volumes:
+#   ignore:
