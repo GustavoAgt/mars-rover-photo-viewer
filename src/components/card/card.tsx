@@ -21,11 +21,17 @@ const Image = styled.img`
   width: 100%;
   object-position: center;
   object-fit: cover;
+
+  @media only screen and (max-width: 600px) {
+    object-fit: fill;
+  }
 `;
 
 const DatesContainer = styled.div`
   position: absolute;
-  top: 70%;
+  top: 68%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 35rem;
   display: flex;
   justify-content: center;
@@ -38,6 +44,10 @@ const Dates = styled.span`
   font-size: 1.7rem;
   font-weight: 700;
   color: #fff;
+
+  @media only screen and (max-width: 600px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const TitleDates = styled.span``;
@@ -47,7 +57,6 @@ const MoreInfo = styled.div`
   align-items: center;
   padding: 2rem;
   height: 20%;
-  width: 100%;
 `;
 
 const Name = styled.h2`
@@ -68,6 +77,7 @@ const CamName = styled.p`
   color: #a1b2bc;
   font-size: 1.4rem;
   margin: 0;
+
   & > b {
     margin-left: 0.5rem;
     font-style: italic;
