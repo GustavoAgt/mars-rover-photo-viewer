@@ -52,7 +52,6 @@ const SideBar: FC<Props> = ({ img }) => {
           }}
           keepColor={"/bookmarks" === location.pathname}
         />
-        <SecondaryButton value="Discover" width="80%" />
       </ButtonContainer>
     </Container>
   );

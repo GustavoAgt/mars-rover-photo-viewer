@@ -14,6 +14,10 @@ const Container = styled.div`
   width: 35rem;
   height: 50rem;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
+
+  @media only screen and (max-width: 1728px) {
+    width: 33rem;
+  }
 `;
 
 const Image = styled.img`
@@ -45,6 +49,9 @@ const Dates = styled.span`
   font-weight: 700;
   color: #fff;
 
+  @media only screen and (max-width: 1728px) {
+    font-size: 1.6rem;
+  }
   @media only screen and (max-width: 600px) {
     font-size: 1.3rem;
   }
