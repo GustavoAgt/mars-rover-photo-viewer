@@ -3,7 +3,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import Home from "@mui/icons-material/Home";
 import Bookmark from "@mui/icons-material/Bookmark";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 import { useNavigate } from "react-router-dom";
 import { red } from "@mui/material/colors";
@@ -49,19 +48,6 @@ const BottomNav = () => {
             navigation("/bookmarks");
           }}
           icon={<Bookmark sx={{ width: 32, height: 32 }} />}
-        />
-        <BottomNavigationAction
-          label="Nearby"
-          className="bottom-nav__action"
-          onClick={() => {
-            navigation("/");
-          }}
-          icon={
-            <LocationOnIcon
-              className="bottom-nav__icon"
-              sx={{ width: 32, height: 32 }}
-            />
-          }
         />
       </BottomNavigation>
     </ThemeProvider>

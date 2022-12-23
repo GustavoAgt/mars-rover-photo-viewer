@@ -10,6 +10,7 @@ export default function useFetchRoversData() {
       refetchOnReconnect: false,
       retry: 1,
       retryDelay: 3000,
+      staleTime: Infinity,
     }
   );
 

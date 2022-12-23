@@ -17,7 +17,7 @@ type Props = {
 const Avatar: FC<Props> = ({ img }) => {
   return (
     <Container>
-      <Img src={img} />
+      <Img src={img} alt="rover avatar"/>
     </Container>
   );
 };

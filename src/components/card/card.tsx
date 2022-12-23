@@ -108,7 +108,7 @@ const Card: FC<Props> = ({
   onBookmark,
 }) => {
   return (
-    <Container>
+    <Container role="presentation">
       <Image
         src={img}
         alt={`${name} photo of mars from cam ${camFullName} also known as ${camaraName}`}
