@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import slideReducer from "../slices/slide.slice";
+import photosReducer from "../slices/photos.slice";
 
 export const store = configureStore({
   reducer: {
-    slide: slideReducer,
+    photos: photosReducer,
   },
 });
 

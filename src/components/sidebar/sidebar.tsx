@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { FC } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useStableNavigate } from "../../hooks/stableNavigationContext";
 
 import { SecondaryButton } from "../button/button";
 
@@ -28,8 +29,8 @@ type Props = {
 };
 
 const SideBar: FC<Props> = ({ img }) => {
-  const navigation = useNavigate();
   const location = useLocation();
+  const navigate = useStableNavigate();
 
   return (
     <Container>
@@ -40,7 +41,7 @@ const SideBar: FC<Props> = ({ img }) => {
           value="Home"
           width="80%"
           onClick={() => {
-            navigation("/");
+            navigate("/");
           }}
           keepColor={"/" === location.pathname}
         />
@@ -48,7 +49,7 @@ const SideBar: FC<Props> = ({ img }) => {
           value="Bookmarks"
           width="80%"
           onClick={() => {
-            navigation("/bookmarks");
+            navigate("/bookmarks");
           }}
           keepColor={"/bookmarks" === location.pathname}
         />

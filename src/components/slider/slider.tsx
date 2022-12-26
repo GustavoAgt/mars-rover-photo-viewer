@@ -1,8 +1,11 @@
-import { ChangeEvent, FC} from "react";
+import { ChangeEvent, FC } from "react";
 import styled from "@emotion/styled";
-import { useDispatch } from "react-redux";
-import { setSlideValue } from "../../redux/slices/slide.slice";
 import mars from "../../resources/images/mars.png";
+import {
+  fetchRoverPhotos,
+  setPhotoSlide,
+} from "../../redux/slices/photos.slice";
+import { useAppDispatch, useAppSelector } from "../../hooks/app.hooks";
 
 const StyledSlide = styled.input`
   -webkit-appearance: none;
@@ -45,10 +48,18 @@ type Props = {
 };
 
 const Slider: FC<Props> = ({ value }) => {
-  const dispatch = useDispatch();
+  const photosState = useAppSelector((state) => state.photos);
+
+  const dispatch = useAppDispatch();
 
   const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSlideValue({ value: event.target.value }));
+    dispatch(setPhotoSlide({ sliderValue: event.target.value }));
+    dispatch(
+      fetchRoverPhotos({
+        numOfPics: event.target.value,
+        photos: photosState.photos as any,
+      })
+    );
   };
 
   return (

@@ -16,7 +16,7 @@ const Container = styled.div`
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.315);
 
   @media only screen and (max-width: 1728px) {
-    width: 33rem;
+    width: 32rem;
   }
 `;
 
