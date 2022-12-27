@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from "react";
 import styled from "@emotion/styled";
 import mars from "../../resources/images/mars.png";
 import {
-  fetchRoverPhotos,
+  generateRoverPhotos,
   setPhotoSlide,
 } from "../../redux/slices/photos.slice";
 import { useAppDispatch, useAppSelector } from "../../hooks/app.hooks";
@@ -55,7 +55,7 @@ const Slider: FC<Props> = ({ value }) => {
   const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setPhotoSlide({ sliderValue: event.target.value }));
     dispatch(
-      fetchRoverPhotos({
+      generateRoverPhotos({
         numOfPics: event.target.value,
         photos: photosState.photos as any,
       })

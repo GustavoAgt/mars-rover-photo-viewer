@@ -15,7 +15,7 @@ const initialState: Photos = {
   generatePhotos: [],
 };
 
-export const fetchRoverPhotos = createAsyncThunk<
+export const generateRoverPhotos = createAsyncThunk<
   Photo[],
   { numOfPics: string | undefined; photos: Photo[] }
 >("photos/fetchByURI", async ({ numOfPics, photos }) => {
@@ -38,7 +38,7 @@ const photosSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder.addCase(fetchRoverPhotos.fulfilled, (state, action) => {
+    builder.addCase(generateRoverPhotos.fulfilled, (state, action) => {
       state.generatePhotos = action.payload;
     });
   },

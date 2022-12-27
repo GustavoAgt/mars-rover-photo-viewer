@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchRoverPhotos, setPhotos } from "../redux/slices/photos.slice";
+import { generateRoverPhotos, setPhotos } from "../redux/slices/photos.slice";
 import { httpGetCuriosityPhotos } from "../request/nasa.request";
 import { useAppDispatch } from "./app.hooks";
 
@@ -22,7 +22,7 @@ export default function useFetchRoversData() {
           setPhotos({ photos: data?.data?.photos, sliderValue: SLIDER_DEFAULT })
         );
         dispatch(
-          fetchRoverPhotos({
+          generateRoverPhotos({
             numOfPics: SLIDER_DEFAULT,
             photos: data?.data?.photos,
           })

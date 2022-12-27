@@ -45,6 +45,7 @@ const NoContent = styled.span`
 `;
 
 const Bookmarks = () => {
+  // eslint-disable-next-line
   const [value, _] = useLocalStorage<{ key: number; value: Photo }[]>("photos");
 
   const extractPhotos = (data: { key: number; value: Photo }[]) => {
