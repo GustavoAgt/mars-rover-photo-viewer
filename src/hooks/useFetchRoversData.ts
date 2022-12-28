@@ -1,5 +1,9 @@
 import { useQuery } from "react-query";
-import { generateRoverPhotos, setPhotos } from "../redux/slices/photos.slice";
+import {
+  generateRoverPhotos,
+  setPhotos,
+  setPhotoSlide,
+} from "../redux/slices/photos.slice";
 import { httpGetCuriosityPhotos } from "../request/nasa.request";
 import { useAppDispatch } from "./app.hooks";
 
@@ -17,7 +21,11 @@ export default function useFetchRoversData() {
       staleTime: Infinity,
 
       onSuccess: (data) => {
-        const SLIDER_DEFAULT = "4";
+        const MAX = 6;
+        const MIN = 4;
+        const SLIDER_DEFAULT = String(
+          Math.floor(Math.random() * (MAX - MIN + 1)) + MIN
+        );
         dispatch(
           setPhotos({ photos: data?.data?.photos, sliderValue: SLIDER_DEFAULT })
         );
@@ -27,6 +35,7 @@ export default function useFetchRoversData() {
             photos: data?.data?.photos,
           })
         );
+        dispatch(setPhotoSlide({ sliderValue: SLIDER_DEFAULT }));
       },
     }
   );
